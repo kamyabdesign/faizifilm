@@ -1,0 +1,83 @@
+{% load static %}
+<div class="loader">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="spinner">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="navbar-area fixed-top">
+    <div class="mobile-nav">
+        <a href="{% url 'index' %}" class="logo">
+            <img src="{{ all.logo.url }}" alt="Logo" />
+        </a>
+    </div>
+
+    <div class="main-nav">
+        <div class="container">
+            <nav class="navbar navbar-expand-md navbar-light">
+                <a class="navbar-brand" href="{% url 'index' %}">
+                    <img src="{% static 'img/logo.png' %}" alt="Logo" />
+                </a>
+                <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+                    <ul class="navbar-nav">
+                        <li class="nav-item" {% if "/" == request.path %} class="active" {% else %} class="nav-item" 
+                        {% endif %}>
+                            <a href="{% url 'index' %}" class="nav-link">خانه</a>
+                        </li>
+                        <li class="nav-item" {% if "work" in request.path %} class="active" {% else %} class="nav-item"
+                            {% endif %}>
+                            <a href="{% url 'work' %}" class="nav-link">کارها </a>
+                        </li>
+                        <li class="nav-item" {% if "blogs" in request.path %} class="active" {% else %} class="nav-item"
+                            {% endif %}>
+                            <a href="{% url 'blogs' %}" class="nav-link">مقالات </a>
+                        </li>
+
+                        <li class="nav-item" {% if "about" in request.path %} class="active" {% else %} class="nav-item"
+                            {% endif %}>
+                            <a href="{% url 'about' %}" class="nav-link">درموردما</a>
+                        </li>
+                        <li class="nav-item" {% if 'contact' in request.path %} class="active" {% else %}
+                            class="nav-item" {% endif %}>
+                            <a href="{% url 'contact' %}" class="nav-link">تماس باما</a>
+                        </li>
+                    </ul>
+                    {% if '/' == request.path %}
+                    <div class="side-nav">
+                        <div class="nav-srh">
+                            <div class="search-toggle">
+                                <button class="search-icon icon-search">
+                                    <i class="bx bx-search-alt"></i>
+                                </button>
+                                <button class="search-icon icon-close">
+                                    <i class="bx bx-x"></i>
+                                </button>
+                            </div>
+                            <div class="search-area">
+                                <form>
+                                    <input type="text" class="src-input" id="search-terms"
+                                        placeholder="Search here..." />
+                                    <button type="submit" name="submit" value="Go" class="search-icon">
+                                        <i class="bx bx-search-alt"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                        <button type="button" class="btn modal-btn" data-toggle="modal" data-target="#myModalRight">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
+                    </div>
+                    {% else %}
+
+                    {% endif %}
+                </div>
+            </nav>
+        </div>
+    </div>
+</div>

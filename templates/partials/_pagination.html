@@ -1,0 +1,39 @@
+<div class="row">
+     <div class="col-md-12 col-12">
+          {% if kar.has_other_pages %}
+          <ul class="pagination justify-content-center">
+               {% if kar.has_previous %}
+               <li class="page-item">
+                    <a href="?page={{ kar.previous_page_number }}" class="page-link">&laquo;
+                    </a>
+               </li>
+               {% else %}
+               <li class="page-item disabled">
+                    <a class="page-link">&laquo;</a>
+               </li>
+               {% endif %}
+               {% for i in kar.paginator.page_range %}
+               {% if kar.number == i %}
+               <li class="page-item active">
+                    <a class="page-link">{{i}}</a>
+               </li>
+               {% else %}
+               <li class="page-item">
+                    <a href="?page={{i}}" class="page-link">{{i}}</a>
+               </li>
+               {% endif %}
+               {% endfor %}
+               {% if kar.has_next %}
+               <li class="page-item">
+                    <a href="?page={{ kar.next_page_number }}" class="page-link">&raquo;
+                    </a>
+               </li>
+               {% else %}
+               <li class="page-item disabled">
+                    <a class="page-link">&raquo;</a>
+               </li>
+               {% endif %}
+          </ul>
+          {% endif %}
+     </div>
+</div>

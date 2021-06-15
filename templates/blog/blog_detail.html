@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | حزئیات مقاله
+{%endblock %}
+{% block content %}
+{% include 'partials/_navbar.html' %}
+
+<div class="page-title-area">
+    <div class="container">
+        <div class="page-title-item">
+            <h2>جزئیات مقاله</h2>
+            <ul>
+                <li>
+                    <a href="{% url 'index' %}">خانه</a>
+                </li>
+                <li>
+                    <span></span>
+                </li>
+                <li>جزئیات مقاله</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="work-details-area pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="work-details-item">
+                    <div class="work-details-img">
+                        <img src="{{ post_detail.image.url }}" alt="Blog Details" />
+                    </div>
+                    <div class="work-details-content">
+                        <ul>
+                            <li>توسط <a href="#">{{ post_detail.author }}</a></li>
+                            <li>
+                                <span>/</span>
+                            </li>
+                            <li>{{ post_detail.jpublish }}</li>
+                            <li>
+                                <span>/</span>
+                            </li>
+                            {% for cat in post_detail.category.all %}
+                            <li>{{ cat.title }}</li>
+                            {% endfor %}
+                        </ul>
+                        <h3>{{ post_detail.title }}</h3>
+                        <p>{{ post_detail.description | safe }}</p>
+                    </div>
+                    <div class="work-details-quote">
+                        <i class="bx bxs-quote-left"></i>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
+                            ab cumque iure reiciendis maiores ipsum itaque placeat rem modi
+                            saepe minima sit eveniet officiis magni culpa, impedit explicabo
+                            non assumenda.
+                        </p>
+                        <div class="link">
+                            <a href="#">- {{ post_detail.author }}</a>
+                        </div>
+                    </div>
+                    <div class="blog-comment-box">
+                        <h3>Comments</h3>
+                        {% for cm in comments %}
+                        <div class="comment-item">
+                            <div class="comment-item-left">
+                                <img src="{{ cm.image.url }}" alt="{{ cm.name }}">
+                            </div>
+                            <div class="comment-item-right">
+                                <div class="pull-right">
+                                    <a href="#">{{ cm.name }}</a>
+                                </div>
+                                <div class="pull-left">
+                                    <i class="fa fa-clock-o" aria-hidden="true">
+                                    </i><span>{{ cm.jpublish }}</span>
+                                </div>
+                                <div class="des-l">
+                                    <p>{{ cm.message }}.</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <!-- <div class="comment-item children">
+                            <div class="comment-item-left">
+                                <img src="images/avt-img.jpg" alt="">
+                            </div>
+                            <div class="comment-item-right">
+                                <div class="pull-left">
+                                    <a href="#">Admin</a>
+                                </div>
+                                <div class="pull-right">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>Time : <span>1.30 pm</span>
+                                </div>
+                                <div class="des-l">
+                                    <p>Morbi lacinia ultrices lorem id tincidunt. Cras id dui risus. Pellentesque
+                                        consectetur id mi sed pharetra. Proin imperdiet gravida nisl, sit amet varius
+                                        urna. In auctor.</p>
+                                </div>
+                                <a href="#" class="right-btn-re"><i class="fa fa-reply" aria-hidden="true"></i>
+                                    Reply</a>
+                            </div>
+                        </div> -->
+
+                    </div>
+                    <div class="blog-details-form">
+                        <h2>Leave A Comment</h2>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Name *</label>
+                                        <input name="name" type="text" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Email *</label>
+                                        <input type="email" name="email" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>Your Comment</label>
+                                        <textarea id="your_comment" name="message" class="form-control"
+                                            rows="10"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn blog-details-btn">
+                                Post A Comment
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="work-details-item">
+                    <div class="work-details-search">
+                        <form action="{% url 'search' %}">
+                            <input type="text" name="q" class="form-control" placeholder="جستجو در وبلاگ" />
+                            <button type="submit" class="btn search-btn">
+                                <i class="bx bx-search-alt"></i>
+                            </button>
+                        </form>
+                    </div>
+                    <div class="work-details-work">
+                        <h3>Popular Blogs</h3>
+                        {% for post in recent %}
+                        <div class="work-inner">
+                            <ul class="align-items-center">
+                                <li>
+                                    <img src="{{ post.image.url }}" alt="Work" />
+                                </li>
+                                <li>
+                                    <h4>
+                                        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                                    </h4>
+                                    <span>{{ post.created }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="work-details-work">
+                        <h3>Popular Work</h3>
+                        {% for works in work %}
+                        <div class="work-inner">
+                            <ul class="align-items-center">
+                                <li>
+                                    <img src="{{ works.photo_work.url }}" alt="{{ works.title }}" />
+                                </li>
+                                <li>
+                                    <h4>
+                                        <a href="{{ works.get_absolute_url }}">{{ works.title }}</a>
+                                    </h4>
+                                    <span>{{ works.jpublish }}</span>
+                                </li>
+
+                            </ul>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="work-details-cate">
+                        <h3>دسته بندی ها</h3>
+                        <ul>
+                            {% for cat in category.all %}
+                            <li>
+                                <a href="{% url 'category' cat.slug %}">{{ cat.title }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <!-- Widget [Tags Cloud Widget]-->
+                    <div class="widget tags mt-4">
+                        <header>
+                            <h3 class="h3">برچسب ها</h3>
+                        </header>
+                        <ul class="list-inline">
+                            {% for tag in tags %}
+                            <li class="list-inline-item">
+                                <a href="{% url 'tag' tag.slug %}" class="tag"># {{ tag.title }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

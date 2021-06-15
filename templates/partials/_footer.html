@@ -1,0 +1,150 @@
+{% load static %}
+<footer class="pt-100 pb-70">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-6 col-lg-3">
+        <div class="footer-item">
+          {% for al in all %}
+          <div class="footer-logo">
+            <a class="footer-logo-img" href="#">
+              <img src="{{ al.logo.url }}" alt="Logo" />
+            </a>
+            <p>
+              {{ al.about_us }}
+            </p>
+            <ul>
+              <li>
+                <a href="{{ al.social_face }}" target="_blank">
+                  <i class="bx bxl-facebook"></i>
+                </a>
+              </li>
+              <li>
+                <a href="{{ al.social_twitter }}" target="_blank">
+                  <i class="bx bxl-twitter"></i>
+                </a>
+              </li>
+              <li>
+                <a href="{{ al.social_telegram }}" target="_blank">
+                  <i class="bx bxl-telegram"></i>
+                </a>
+              </li>
+              <li>
+                <a href="{{ al.social_inestagram }}" target="_blank">
+                  <i class="bx bxl-instagram"></i>
+                </a>
+              </li>
+            </ul>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3">
+        <div class="footer-item">
+          <div class="footer-instagram">
+            <h3>شبکه های اجتماعی</h3>
+            <ul>
+              {% for al in all %}
+              <li>
+                <a href="{{ al.social_face }}" target="_blank">
+                  <img src="{{ al.face_pic1.url }}" alt="Instagram" />
+                </a>
+              </li>
+              <li>
+                <a href="{{ al.social_face }}" target="_blank">
+                  <img src="{{ al.face_pic2.url }}" alt="Instagram" />
+                </a>
+              </li>
+              <li>
+                <a href="{{ al.social_face }}" target="_blank">
+                  <img src="{{ al.face_pic3.url }}" alt="Instagram" />
+                </a>
+              </li>
+              <li>
+                <a href="{{ al.social_face }}" target="_blank">
+                  <img src="{{ al.face_pic4.url }}" alt="Instagram" />
+                </a>
+              </li>
+              <li>
+                <a href="{{ al.social_face }}" target="_blank">
+                  <img src="{{ al.face_pic5.url }}" alt="Instagram" />
+                </a>
+              </li>
+              <li>
+                <a href="{{ al.social_face }}" target="_blank">
+                  <img src="{{ al.face_pic6.url }}" alt="Instagram" />
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="footer-item">
+          <div class="footer-link">
+            <h3>لینک های مفید</h3>
+            <ul>
+              <li>
+                <a href="{% url 'index' %}" target="_blank">خانه</a>
+              </li>
+              <li>
+                <a href="{% url 'about'  %}" target="_blank">درموردما</a>
+              </li>
+              <li>
+                <a href="{% url 'work' %}" target="_blank">کارها</a>
+              </li>
+              <li>
+                <a href="{% url 'video' %}" target="_blank">ویدیوها</a>
+              </li>
+              <li>
+                <a href="{% url 'blogs' %}" target="_blank">مقالات</a>
+              </li>
+              <li>
+                <a href="{% url 'contact' %}" target="_blank">تماس باما</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="footer-item">
+          <div class="footer-touch">
+            <h3>راه های تماس</h3>
+            <ul>
+              {% for al in all %}
+              <li>
+                <i class="bx bxs-phone-call"></i>
+                <h4>تلفن:</h4>
+                <a href="#">{{ al.phone }}</a>
+              </li>
+              <li>
+                <i class="bx bx-message-square-detail"></i>
+                <h4>ایمل:</h4>
+                <span>{{ al.email }}</span>
+              </li>
+              <li>
+                <i class="bx bxs-location-plus"></i>
+                <h4>آدرس:</h4>
+                <span>{{ al.address }}</span>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+
+<div class="copyright-area">
+  <div class="container">
+    <div class="copyright-item">
+      {% for all in all %}
+      <p>Copyright @{% now "Y" %} All rights reserved</p>
+      {% endfor %}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | ویدیو{% endblock %}
+{% block content %}
+{% include 'partials/_navbar.html' %}
+<div class="page-title-area">
+    <div class="container">
+        <div class="page-title-item">
+            <h2>ویدیوها</h2>
+            <ul>
+                <li>
+                    <a href="{ url 'index'}">خانه</a>
+                </li>
+                <li>
+                    <span></span>
+                </li>
+                <li>ویدیوها</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="week-area pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+            {% for film in films %}
+            <div class="col-sm-6 col-lg-4">
+                <div class="week-item week-video-btn-two">
+                    <img src="{{ film.img.url }}" alt="{{ film.name }}">
+                    <a href="{{ film.link }}" class="popup-youtube">
+                        <i class='bx bx-play'></i>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-12">
+                {% if films.has_other_pages %}
+                <ul class="pagination justify-content-center">
+                    {% if films.has_previous %}
+                    <li class="page-item">
+                        <a href="?page={{ films.previous_page_number }}" class="page-link">&laquo;
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link">&laquo;</a>
+                    </li>
+                    {% endif %}
+                    {% for i in films.paginator.page_range %}
+                    {% if films.number == i %}
+                    <li class="page-item active">
+                        <a class="page-link">{{i}}</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                        <a href="?page={{i}}" class="page-link">{{i}}</a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                    {% if films.has_next %}
+                    <li class="page-item">
+                        <a href="?page={{ films.next_page_number }}" class="page-link">&raquo;
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link">&raquo;</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | our work{% endblock %}
+{% block content %}
+
+{% include 'partials/_navbar.html' %}
+
+<div class="page-title-area">
+    <div class="container">
+        <div class="page-title-item">
+            <h2>کارها</h2>
+            <ul>
+                <li>
+                    <a href="{% url 'index' %}">خانه</a>
+                </li>
+                <li>
+                    <span></span>
+                </li>
+                <li>کارها</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<section class="work-area work-area-three pt-100 pb-70">
+    <div class="container-fluid">
+        <div class="row">
+            {% for works in work %}
+            <div class="col-sm-6 col-lg-6">
+                <a href="{{ works.get_absolute_url }}">
+                    <div class="work-item">
+                        <img src="{{ works.photo_work.url }}" alt="{{ works.title }}">
+                        <div class="work-content">
+                            <h3>{{ works.title }}</h3>
+                            {% for cat in works.category.all %}
+                            <span>{{ cat.title }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% empty %}
+            <div>
+                <h3>برای فعلا موضوعی برای نمایش نیست!</h3>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-12 col-12">
+                {% if work.has_other_pages %}
+                <ul class="pagination justify-content-center">
+                    {% if work.has_previous %}
+                    <li class="page-item">
+                        <a href="?page={{ work.previous_page_number }}" class="page-link">&laquo;
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link">&laquo;</a>
+                    </li>
+                    {% endif %}
+                    {% for i in work.paginator.page_range %}
+                    {% if work.number == i %}
+                    <li class="page-item active">
+                        <a class="page-link">{{i}}</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                        <a href="?page={{i}}" class="page-link">{{i}}</a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                    {% if work.has_next %}
+                    <li class="page-item">
+                        <a href="?page={{ work.next_page_number }}" class="page-link">&raquo;
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link">&raquo;</a>
+                    </li>
+                    {% endif %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

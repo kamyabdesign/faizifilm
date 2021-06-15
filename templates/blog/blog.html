@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | مقالات{% endblock %}
+{% block content %}
+{% include 'partials/_navbar.html' %}
+<div class="page-title-area">
+    <div class="container">
+        <div class="page-title-item">
+            <h2>مقالات</h2>
+            <ul>
+                <li>
+                    <a href="{% url 'index' %}">خانه</a>
+                </li>
+                <li>
+                    <span></span>
+                </li>
+                <li>مقالات</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<section class="blog-area blog-area-two pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+            {% for post in blogs %}
+            <div class="col-sm-6 col-lg-4">
+                <div class="blog-item">
+                    <a href="{{ post.get_absolute_url }}">
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}">
+                    </a>
+                    <div class="blog-bottom">
+                        <span>{{ post.jpublish }}</span>
+                        <h3>
+                            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                        </h3>
+                        <p>{{ post.description | truncatewords:15}}</p>
+                        <a class="blog-btn" href="{{ post.get_absolute_url }}">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-12">
+            {% if blogs.has_other_pages %}
+            <ul class="pagination justify-content-center">
+                {% if blogs.has_previous %}
+                <li class="page-item">
+                    <a href="?page={{ blogs.previous_page_number }}" class="page-link">&laquo;
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link">&laquo;</a>
+                </li>
+                {% endif %}
+                {% for i in blogs.paginator.page_range %}
+                {% if blogs.number == i %}
+                <li class="page-item active">
+                    <a class="page-link">{{i}}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a href="?page={{i}}" class="page-link">{{i}}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+                {% if blogs.has_next %}
+                <li class="page-item">
+                    <a href="?page={{ blogs.next_page_number }}" class="page-link">&raquo;
+                    </a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link">&raquo;</a>
+                </li>
+                {% endif %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock content %}

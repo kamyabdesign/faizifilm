@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | work detail
+{% endblock %}
+{% block content %}
+{% include 'partials/_navbar.html' %}
+
+<div class="page-title-area">
+    <div class="container">
+        <div class="page-title-item">
+            <h2>جزئیات کارها</h2>
+            <ul>
+                <li>
+                    <a href="{% url 'index' %}">خانه</a>
+                </li>
+                <li>
+                    <span></span>
+                </li>
+                <li>جزئیات کارها</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="work-details-area pt-100 pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="work-details-item">
+                    <div class="work-details-img">
+                        <img src="{{ detail.photo_work.url }}" alt="{{ detail.title }}" />
+                        <a href="{{ detail.video }}" class="popup-youtube">
+                            <i class="bx bx-play"></i>
+                        </a>
+                    </div>
+                    <div class="work-details-content">
+                        <ul>
+                            <li>توسط <a href="#">{{ detail.author }}</a></li>
+                            <li>
+                                <span>/</span>
+                            </li>
+                            <li>{{ detail.jpublish }}</li>
+                            <li>
+                                <span>/</span>
+                            </li>
+                            {% for cat in detail.category.all %}
+                            <li>{{ cat.title }}</li>
+                            {% endfor %}
+
+                        </ul>
+                        <h3>{{ detail.title }}</h3>
+                        <p>{{ detail.description | safe }}</p>
+                    </div>
+                    <div class="work-details-quote">
+                        <i class="bx bxs-quote-left"></i>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
+                            ab cumque iure reiciendis maiores ipsum itaque placeat rem modi
+                            saepe minima sit eveniet officiis magni culpa, impedit explicabo
+                            non assumenda.
+                        </p>
+                        <div class="link">
+                            <a href="#">- {{ detail.author }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="week-area">
+                    <div class="row">
+                        {% for film in video %}
+                        <div class="col-sm-6 col-lg-6">
+                            <div class="week-item week-video-btn-two">
+                                <img src="{{ film.img.url }}" alt="{{ film.title }}" />
+                                <a href="{{ film.link }}" class="popup-youtube">
+                                    <i class="bx bx-play"></i>
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <!-- <div class="col-sm-6 col-lg-6">
+                            <div class="week-item week-video-btn-two">
+                                <img src="{% static 'img/home-one/week5.jpg' %}" alt="Week" />
+                                <a href="https://www.youtube.com/watch?v=aqz-KE-bpKQ" class="popup-youtube">
+                                    <i class="bx bx-play"></i>
+                                </a>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="work-details-item">
+                    <div class="work-details-work">
+                        <h3>Popular Work</h3>
+                        {% for latest in recent %}
+                        <div class="work-inner">
+                            <ul class="align-items-center">
+                                <li>
+                                    <img src="{{ latest.photo_work.url }}" alt="{{ latest.title }}" />
+                                </li>
+                                <li>
+                                    <h4>
+                                        <a href="{{ latest.get_absolute_url }}">{{ latest.title }}</a>
+                                    </h4>
+                                    <span>{{ latest.jpublish }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="work-details-cate">
+                        <h3>دسته بندی</h3>
+                        <ul>
+                            {% for cat in category.all %}
+                            <li>
+                                <a href="{% url 'work_category' cat.slug %}">{{ cat.title }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

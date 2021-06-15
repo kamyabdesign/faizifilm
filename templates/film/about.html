@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | درموردما{% endblock %}
+{% block content %}
+{% include 'partials/_navbar.html' %}
+<div class="page-title-area">
+    <div class="container">
+        <div class="page-title-item">
+            <h2>درمورد ما</h2>
+            <ul>
+                <li>
+                    <a href="{% url 'index' %}">خانه</a>
+                </li>
+                <li>
+                    <span></span>
+                </li>
+                <li>درمورد ما</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<section class="service-area service-area-two pt-100 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <span class="sub-title">What We Do</span>
+            <h2>Our Services</h2>
+        </div>
+        <div class="row">
+            {% for obj in service %}
+            <div class="col-sm-6 col-lg-4">
+                <div class="service-item">
+                    <i class='flaticon-video-camera-2'></i>
+                    <div class="service-inner">
+                        <h3>{{ obj.name }}</h3>
+                        <p>{{ obj.content }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+
+<section class="trust-area pt-100 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <span class="sub-title">Trust</span>
+            {% for obj in trust %}
+            <h2>{{ obj.title }}</h2>
+        </div>
+        <div class="trust-content">
+
+            <p>{{ obj.content }}</p>
+            <div class="row">
+                <div class="col-6 col-sm-3 col-lg-3">
+                    <div class="trust-img">
+                        <img src="{{ obj.image_1.url }}" alt="{{ obj.title }}" />
+                    </div>
+                </div>
+                <div class="col-6 col-sm-3 col-lg-3">
+                    <div class="trust-img">
+                        <img src="{{ obj.image_2.url }}" alt="{{ obj.title }}" />
+                    </div>
+                </div>
+                <div class="col-6 col-sm-3 col-lg-3">
+                    <div class="trust-img">
+                        <img src="{{ obj.image_3.url }}" alt="{{ obj.title }}" />
+                    </div>
+                </div>
+                <div class="col-6 col-sm-3 col-lg-3">
+                    <div class="trust-img">
+                        <img src="{{ obj.image_4.url }}" alt="{{ obj.title }}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+<section class="product-area product-area-two pt-100 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <span class="sub-title">Features</span>
+            <h2>Why Choose Us</h2>
+        </div>
+        <div class="row">
+            {% for obj in feature %}
+            <div class="col-sm-6 col-lg-4">
+                <div class="product-item">
+                    <img src="{{ obj.img.url }}" alt="{{ obj.name }}">
+                    <h3>{{ obj.name }}</h3>
+                    <p>{{ obj.detail }} </p>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+
+<section class="work-area work-area-two">
+    <div class="container-fluid p-0">
+        <div class="section-title">
+            <span class="sub-title">Our Work</span>
+            <h2>Featured Work</h2>
+        </div>
+        <div class="row m-0">
+            {% for obj in work %}
+            <div class="col-sm-6 col-lg-6 p-0">
+                <a href="{{ obj.get_absolute_url }}">
+                    <div class="work-item">
+                        <img src="{{ obj.photo_work.url }}" alt="{{ obj.title }}">
+                        <div class="work-content">
+                            <h3>{{ obj.title }}</h3>
+                            {% for cat in obj.category.all %}
+                            <span>{{ cat.title }}</span>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<section class="team-area mt-5 pt-4 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <span class="sub-title">Our Team</span>
+            <h2>Directors Of Moovi</h2>
+        </div>
+        <div class="row">
+            {% for obj in team %}
+            <div class="col-sm-6 col-lg-3">
+                <div class="team-item">
+                    <div class="team-top">
+                        <img src="{{ obj.team_pic.url }}" alt="{{ obj.name }}" />
+                        <ul>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="bx bxl-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="bx bxl-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="bx bxl-pinterest-alt"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="bx bxl-instagram-alt"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="team-bottom">
+                        <h3>{{ obj.name }}</h3>
+                        <span>{{ obj.position }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

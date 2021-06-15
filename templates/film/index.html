@@ -1,0 +1,401 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div id="myModalRight" class="modal fade modal-right" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="{% static 'img/logo-two.png' %}" alt="Logo" />
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% for all in all %}
+            <div class="modal-body">
+                <h2>{{ all.name }}</h2>
+                <p>{{ all.about_us }}
+                </p>
+                <div class="image-area">
+                    <h2>فیسبوک ما</h2>
+                    <div class="row">
+                        <div class="col-6 col-lg-4">
+                            <a href="{{ all.social_face }}">
+                                <img src="{{ all.face_pic1.url }}" alt="facebook" />
+                            </a>
+                        </div>
+                        <div class="col-6 col-lg-4">
+                            <a href="{{ all.social_face }}">
+                                <img src="{{ all.face_pic2.url }}" alt="facebook" />
+                            </a>
+                        </div>
+                        <div class="col-6 col-lg-4">
+                            <a href="{{ all.social_face }}">
+                                <img src="{{ all.face_pic3.url }}" alt="Instagram" />
+                            </a>
+                        </div>
+                        <div class="col-6 col-lg-4">
+                            <a href="{{ all.social_face }}">
+                                <img src="{{ all.face_pic4.url }}" alt="Instagram" />
+                            </a>
+                        </div>
+                        <div class="col-6 col-lg-4">
+                            <a href="{{ all.social_face }}">
+                                <img src="{{ all.face_pic5.url }}" alt="Instagram" />
+                            </a>
+                        </div>
+                        <div class="col-6 col-lg-4">
+                            <a href="{{ all.social_face }}">
+                                <img src="{{ all.face_pic6.url }}" alt="Instagram" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="social-area">
+                    <h3>مارا دررسانه های احتماعی دنبال کنید</h3>
+                    <ul>
+                        <li>
+                            <a href="{{ all.social_face }}" target="_blank">
+                                <i class="bx bxl-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ all.social_twitter }}" target="_blank">
+                                <i class="bx bxl-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ all.social_telegram }}" target="_blank">
+                                <i class="bx bxl-telegram"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ all.social_inestagram }}" target="_blank">
+                                <i class="bx bxl-instagram"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="banner-wrap">
+    <div class="banner-slider owl-theme owl-carousel">
+        {% for obj in main %}
+        <div class="banner-area banner-img-one" style="background-image: url({{ obj.images.url }})">
+            <div class="d-table">
+                <div class="d-table-cell">
+                    <div class="banner-content">
+                        <h1>{{ obj.title }}</h1>
+                        <p>ّ{{ obj.overview }}</p>
+                        <a class="banner-btn" href="{% url 'video' %}">More Videos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="banner-social">
+        <span>Follow us on:</span>
+        {% for all in all %}
+        <ul>
+            <li>
+                <a href="{{ all.social_face }}" target="_blank">
+                    <i class="bx bxl-facebook"></i>
+                </a>
+            </li>
+            <li>
+                <a href="{{ all.social_twitter }}" target="_blank">
+                    <i class="bx bxl-twitter"></i>
+                </a>
+            </li>
+            <li>
+                <a href="{{ all.social_telegram }}" target="_blank">
+                    <i class="bx bxl-telegram"></i>
+                </a>
+            </li>
+            <li>
+                <a href="{{ all.social_inestagram }}" target="_blank">
+                    <i class="bx bxl-instagram"></i>
+                </a>
+            </li>
+        </ul>
+        {% endfor %}
+    </div>
+    <div class="lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+</div>
+
+<section class="trust-area pt-100 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <span class="sub-title">Trust</span>
+            {% for obj in trust %}
+            <h2>{{ obj.title }}</h2>
+        </div>
+        <div class="trust-content">
+            <p>
+                {{ obj.content }}
+            </p>
+            <div class="row">
+                <div class="col-6 col-sm-3 col-lg-3">
+                    <div class="trust-img">
+                        <img src="{{ obj.image_1.url }}" alt="{{ obj.title }}" />
+                    </div>
+                </div>
+                <div class="col-6 col-sm-3 col-lg-3">
+                    <div class="trust-img">
+                        <img src="{{ obj.image_2.url }}" alt="{{ obj.tilte }}" />
+                    </div>
+                </div>
+                <div class="col-6 col-sm-3 col-lg-3">
+                    <div class="trust-img">
+                        <img src="{{ obj.image_3.url }}" alt="{{ obj.title }}" />
+                    </div>
+                </div>
+                <div class="col-6 col-sm-3 col-lg-3">
+                    <div class="trust-img">
+                        <img src="{{ obj.image_4.url }}" alt="{{ obj.title }}" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="week-area pt-100 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <span class="sub-title">دراین سال</span>
+            <h2>فیلم های جدید ما</h2>
+        </div>
+        <div class="outer">
+            <div id="big" class="owl-carousel owl-theme">
+                {% for obj in film %}
+                <div class="item">
+                    <div class="week-item">
+                        <img src="{{ obj.img.url }}" alt="{{ obj.title }}" />
+                        <a href="{{ obj.link }}" class="popup-youtube">
+                            <i class="bx bx-play"></i>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div id="thumbs" class="owl-carousel owl-theme">
+                {% for obj in film %}
+                <div class="item">
+                    <div class="week-item week-video-btn">
+                        <img src="{{ obj.img.url }}" alt="{{ obj.title }}" />
+                        <a href="{{ obj.link }}" class="popup-youtube">
+                            <i class="bx bx-play"></i>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="work-area">
+    <div class="container-fluid p-0">
+        <div class="section-title">
+            <span class="sub-title">کارهای ما</span>
+            <h2>تفصیلات کار ما</h2>
+        </div>
+        <div class="row m-0">
+            {% for obj in work %}
+            <div class="col-sm-6 col-lg-6 p-0">
+                <a href="{{ obj.get_absolute_url }}">
+                    <div class="work-item">
+                        <img src="{{ obj.photo_work.url }}" alt="{{ obj.title }}" />
+                        <div class="work-content">
+                            <h3>{{ obj.title }}</h3>
+                            <span>{{ obj.author }}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<div class="history-area pt-100 pb-70">
+    <div class="container-fluid p-0">
+        <div class="cd-horizontal-timeline">
+            <div class="section-title">
+                <span class="sub-title">تاریخچه</span>
+                <h2>تاریخچه ما</h2>
+            </div>
+            <div class="timeline">
+                <div class="events-wrapper">
+                    <div class="events">
+                        <ul>
+                            {% for obj in hes_tory %}
+                            <li>
+                                <a class="{% if forloop.first %} selected {% endif %}" href="#0"
+                                    data-date="{{ obj.data_date }}">{{ obj.yeras }}</a>
+                            </li>
+
+                            {% endfor %}
+                        </ul>
+                        <span class="filling-line" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <ul class="cd-timeline-navigation">
+                    <li>
+                        <i class="bx bx-chevron-left"></i>
+                    </li>
+                    <li>
+                        <i class="bx bx-chevron-right"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="events-content">
+                {% for obj in hes_tory %}
+                <ul>
+                    <li class="{% if forloop.first %} selected {% endif %}" data-date="{{ obj.data_date }}">
+                        <div class="row align-items-center m-0">
+                            <div class="col-lg-5">
+                                <div class="history-img">
+                                    <img src="{{ obj.picture.url }}" alt="{{ hestory.title }}" />
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="history-content">
+                                    <h2>{{ obj.title }}</h2>
+                                    <p>
+                                        {{ obj.content }}
+                                    </p>
+                                    <div class="row">
+                                        {% for objs in hes_tory %}
+                                        <div class="col-sm-6 col-lg-4">
+                                            <div class="history-inner">
+                                                <i class="flaticon-video-camera"></i>
+                                                <h3>{{ objs.work_title }}</h3>
+                                                <span>{{ objs.work_detail }}</span>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<section class="team-area mt-5 pt-4 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <span class="sub-title">Our Team</span>
+            <h2>Directors Of Moovi</h2>
+        </div>
+        <div class="row">
+            {% for obj in team %}
+            <div class="col-sm-6 col-lg-3">
+                <div class="team-item">
+                    <div class="team-top">
+                        <img src="{{ obj.team_pic.url }}" alt="{{ obj.name }}" />
+                        <ul>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="bx bxl-facebook"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="bx bxl-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="bx bxl-pinterest-alt"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank">
+                                    <i class="bx bxl-instagram-alt"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="team-bottom">
+                        <h3>{{ obj.name }}</h3>
+                        <span>{{ obj.position }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="testimonial-area ptb-100">
+    <div class="container">
+        <div class="section-title">
+            <span class="sub-title">Testimonial</span>
+            <h2>نظر مشتریان ما</h2>
+        </div>
+        <div class="testimonial-slider owl-theme owl-carousel">
+            {% for obj in testimonial %}
+            <div class="testimonial-item">
+                <i class="bx bxs-quote-alt-left"></i>
+                <p class="h3">
+                    {{ obj.content }}
+                </p>
+                <h2>{{ obj.name }}</h2>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="blog-area pt-100 pb-70">
+    <div class="container">
+        <div class="section-title">
+            <span class="sub-title">Our Blog</span>
+            <h2>Latest News</h2>
+        </div>
+        <div class="row">
+            {% for obj in article %}
+            <div class="col-sm-6 col-lg-4">
+                <div class="blog-item">
+                    <a href="{{ obj.get_absolute_url }}">
+                        <img src="{{ obj.image.url}}" alt="{{ obj.title }}" />
+                    </a>
+                    <div class="blog-bottom">
+                        <span>{{ obj.jpublish }}</span>
+                        <h3>
+                            <a href="{{ obj.get_absolute_url }}">{{ obj.title}}</a>
+                        </h3>
+                        <p>
+                            {{ obj.description | truncatechars:100 }}
+                        </p>
+                        <a class="blog-btn" href="{{ obj.get_absolute_url }}">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

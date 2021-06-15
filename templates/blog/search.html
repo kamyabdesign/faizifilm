@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | جستجو{% endblock %}
+{% block content %}
+{% include 'partials/_navbar.html' %}
+
+<div class="page-title-area">
+     <div class="container">
+          <div class="page-title-item">
+               <h2>جزئیات جستجو</h2>
+               <ul>
+                    <li>
+                         <a href="{% url 'index' %}">خانه</a>
+                    </li>
+                    <li>
+                         <span></span>
+                    </li>
+                    <li>جزئیات جستجو</li>
+               </ul>
+          </div>
+     </div>
+</div>
+<div class="container">
+     <div class="row">
+          {% for post in queryset %}
+          <div class="col-sm-6 col-lg-4">
+               <div class="blog-item">
+                    <a href="{{ post.get_absolute_url }}">
+                         <img src="{{ post.image.url }}" alt="Blog">
+                    </a>
+                    <div class="blog-bottom">
+                         <span>{{ post.jpublish }}</span>
+                         <h3>
+                              <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                         </h3>
+                         <p>{{ post.description | truncatewords:15}}</p>
+                         <a class="blog-btn" href="{{ post.get_absolute_url }}">Read More</a>
+                    </div>
+               </div>
+          </div>
+          {% empty %}
+          <div>
+               <p>متن مورد نظر یافت نشد</p>
+          </div>
+          {% endfor %}
+     </div>
+</div>
+{% include 'partials/_footer.html' %}
+{% endblock content %}

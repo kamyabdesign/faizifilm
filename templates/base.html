@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'css/meanmenu.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'css/boxicons.min.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'css/timeline.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'fonts/flaticon.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}s" />
+
+    <link rel="stylesheet" href="{% static 'css/rtl.css' %}" />
+    <title>{% block title %}Film Website{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}" />
+</head>
+
+<body>
+    <!-- Navbar -->
+    {% include 'partials/_navbar.html' %}
+
+    {% block content %}
+
+    {% endblock content%}
+
+
+    {% include 'partials/_footer.html' %}
+
+    <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+
+    <script src="{% static 'js/popper.min.js' %}"></script>
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+    <script src="{% static 'js/form-validator.min.js' %}"></script>
+
+    <script src="{% static 'js/jquery.meanmenu.js' %}"></script>
+
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+
+    <script src="{% static 'js/timeline.js' %}"></script>
+
+    <script src="{% static 'js/thumb-slide.js' %}"></script>
+
+    <script src="{% static 'js/custom.js' %}"></script>
+</body>
+
+</html>
